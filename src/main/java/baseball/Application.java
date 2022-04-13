@@ -15,7 +15,8 @@ public class Application {
             if ("1234".equals(input)) throw new IllegalArgumentException();
             if ("2".equals(input)) break;
 
-            String result = BaseBall.infer(input);
+            Game game = new Game("135");
+            String result = game.infer(input);
             System.out.println(result);
         }
 
