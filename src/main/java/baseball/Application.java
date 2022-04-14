@@ -1,8 +1,8 @@
 package baseball;
 
+import baseball.utils.Util;
 import camp.nextstep.edu.missionutils.Console;
-
-import java.util.Arrays;
+import camp.nextstep.edu.missionutils.Randoms;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -15,7 +15,8 @@ public class Application {
             if ("1234".equals(input)) throw new IllegalArgumentException();
             if ("2".equals(input)) break;
 
-            Game game = new Game("135");
+            String random = Util.makeRandom(3);
+            Game game = new Game(random);
             String result = game.infer(input);
             System.out.println(result);
         }
