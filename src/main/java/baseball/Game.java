@@ -2,12 +2,11 @@ package baseball;
 
 import baseball.utils.Util;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Game {
 
-    private String answer;
+    private String[] answers;
 
     public static Game createNew() {
         String numbers = Util.makeRandom(3);
@@ -16,25 +15,24 @@ public class Game {
     }
 
     Game(String answer) {
-        this.answer = answer;
+        this.answers = answer.split("");
     }
 
     String[] infer(String input) {
-        String[] answerStrs = this.answer.split("");
-        String[] inputStrs = input.split("");
+        String[] inputs = input.split("");
 
-        String[] temp = new String[3];
-        for (int i = 0; i < inputStrs.length; i++) {
-            String str = inputStrs[i];
-            int index = Arrays.binarySearch(answerStrs, str);
-
-            if (0 <= index) {
-                if (i == index) temp[i] = "S";
-                else temp[i] = "B";
-            } else {
-                temp[i] = "F";
-            }
+        String[] grades = new String[3];
+        for (int i = 0; i < inputs.length; i++) {
+            int foundIndex = Arrays.binarySearch(this.answers, inputs[i]);
+            grades[i] = this.gradeAnswer(foundIndex, i);
         }
-        return temp;
+        return grades;
+    }
+
+    private String gradeAnswer(int foundIndex, int inferIndex) {
+        if (foundIndex < 0) return "F";
+
+        if (inferIndex == foundIndex) return "S";
+        else return "B";
     }
 }
