@@ -4,6 +4,9 @@ import baseball.utils.Util;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class Application {
@@ -24,8 +27,10 @@ public class Application {
                 game = new Game(random);
             }
 
-            String result = game.infer(input);
-            System.out.println(result);
+            String[] results = game.infer(input);
+
+            String text = View.renderText(results);
+            System.out.println(text);
         }
 
         System.out.println("게임 종료");
