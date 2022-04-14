@@ -1,13 +1,11 @@
 package baseball;
 
-import baseball.utils.Util;
 import camp.nextstep.edu.missionutils.Console;
-import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import baseball.constant.ProcessCode;
+import baseball.utils.NumberUtil;
+import baseball.utils.Util;
 
-import static org.assertj.core.api.Assertions.assertThat;
 
 public class Application {
 
@@ -20,9 +18,10 @@ public class Application {
         while (true) {
             String input = Console.readLine();
 
-            if ("1234".equals(input)) throw new IllegalArgumentException();
-            if ("2".equals(input)) break;
-            if ("1".equals(input)) {
+            checkValidIfNotThrow(input);
+
+            if (ProcessCode.EXIT.equals(input)) break;
+            if (ProcessCode.CONTINUE.equals(input)) {
                 random = Util.makeRandom(3);
                 game = new Game(random);
             }
@@ -34,5 +33,14 @@ public class Application {
         }
 
         System.out.println("게임 종료");
+    }
+
+    private static void checkValidIfNotThrow(String input) {
+        if (ProcessCode.EXIT.equals(input)) return;
+        if (ProcessCode.CONTINUE.equals(input)) return;
+
+        if (input.length() == 3 && NumberUtil.isNumeric(input)) return;
+
+        throw new IllegalArgumentException();
     }
 }
