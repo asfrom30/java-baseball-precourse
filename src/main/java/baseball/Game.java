@@ -1,11 +1,19 @@
 package baseball;
 
+import baseball.utils.Util;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Game {
 
-    private final String answer;
+    private String answer;
+
+    public static Game createNew() {
+        String numbers = Util.makeRandom(3);
+        Game game = new Game(numbers);
+        return game;
+    }
 
     Game(String answer) {
         this.answer = answer;

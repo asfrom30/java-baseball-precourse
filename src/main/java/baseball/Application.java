@@ -11,19 +11,19 @@ public class Application {
 
     public static void main(String[] args) {
 
-        // TODO: 해당 부분에 대한 테스트케이스가 필요함
-        String random = Util.makeRandom(3);
-        Game game = new Game(random);
+        Game game = Game.createNew();
 
         while (true) {
             String input = Console.readLine();
 
             checkValidIfNotThrow(input);
 
-            if (ProcessCode.EXIT.equals(input)) break;
+            if (ProcessCode.EXIT.equals(input)) {
+                System.out.println("게임 종료");
+                break;
+            };
             if (ProcessCode.CONTINUE.equals(input)) {
-                random = Util.makeRandom(3);
-                game = new Game(random);
+                game = Game.createNew();
             }
 
             String[] results = game.infer(input);
@@ -32,7 +32,6 @@ public class Application {
             System.out.println(text);
         }
 
-        System.out.println("게임 종료");
     }
 
     private static void checkValidIfNotThrow(String input) {
