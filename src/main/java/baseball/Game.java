@@ -1,5 +1,6 @@
 package baseball;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Game {
@@ -11,17 +12,26 @@ public class Game {
     }
 
     String infer(String input) {
-        if ("246".equals(input)) {
-            return ("낫싱");
-        } else if ("135".equals(input)) {
-            return ("3스트라이크");
-        } else if ("597".equals(input)) {
-            return ("1볼 1스트라이크");
-        } else if ("589".equals(input)) {
-            return ("3스트라이크");
-        } else {
-            return "";
+        // 도메인 로직
+        String[] results = this.newInfer(input);
+
+        // 표현
+        if (Arrays.stream(results).allMatch(str -> str == "F")) return "낫싱"; // TODO: make Every
+
+        ArrayList<String> resultList = new ArrayList<>();
+        long numberOfStrike = Arrays.stream(results).filter(str -> str == "S").count();
+        long numberOfBall = Arrays.stream(results).filter(str -> str == "B").count();
+
+        if (0 < numberOfBall) {
+            resultList.add(numberOfBall + "볼");
         }
+
+        if (0 < numberOfStrike) {
+            resultList.add(numberOfStrike + "스트라이크");
+        }
+
+        String string = String.join(" ", resultList);
+        return string;
     }
 
     String[] newInfer(String input) {
@@ -34,7 +44,7 @@ public class Game {
             int index = Arrays.binarySearch(answerStrs, str);
 
             if (0 <= index) {
-                if(i == index) temp[i] = "S";
+                if (i == index) temp[i] = "S";
                 else temp[i] = "B";
             } else {
                 temp[i] = "F";
