@@ -2,7 +2,7 @@ package baseball.utils;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
-public class Util {
+public class RandomUtil {
 
     public static String makeRandom(int howManyDigit) {
         String string = "";

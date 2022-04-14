@@ -1,25 +1,27 @@
 package baseball;
 
+import baseball.utils.ArrayUtil;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
 public class View {
 
-    static String renderText(String[] results) {
-        if (Arrays.stream(results).allMatch(str -> str == "F")) return "낫싱";
+    static String renderText(String[] grades) {
+        if(ArrayUtil.every(grades, "F")) return "낫싱";
 
-        ArrayList<String> resultList = new ArrayList<>();
-        long numberOfStrike = Arrays.stream(results).filter(str -> str == "S").count();
-        long numberOfBall = Arrays.stream(results).filter(str -> str == "B").count();
+        ArrayList<String> textList = new ArrayList<>();
 
+        int numberOfBall = ArrayUtil.count(grades, "B");
         if (0 < numberOfBall) {
-            resultList.add(numberOfBall + "볼");
+            textList.add(numberOfBall + "볼");
         }
 
+        int numberOfStrike = ArrayUtil.count(grades, "S");
         if (0 < numberOfStrike) {
-            resultList.add(numberOfStrike + "스트라이크");
+            textList.add(numberOfStrike + "스트라이크");
         }
 
-        return String.join(" ", resultList);
+        return String.join(" ", textList);
     }
 }

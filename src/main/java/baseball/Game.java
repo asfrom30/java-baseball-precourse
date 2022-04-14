@@ -1,6 +1,6 @@
 package baseball;
 
-import baseball.utils.Util;
+import baseball.utils.RandomUtil;
 
 import java.util.Arrays;
 
@@ -9,7 +9,7 @@ public class Game {
     private String[] answers;
 
     public static Game createNew() {
-        String numbers = Util.makeRandom(3);
+        String numbers = RandomUtil.makeRandom(3);
         Game game = new Game(numbers);
         return game;
     }

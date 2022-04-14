@@ -4,7 +4,6 @@ import camp.nextstep.edu.missionutils.Console;
 
 import baseball.constant.ProcessCode;
 import baseball.utils.NumberUtil;
-import baseball.utils.Util;
 
 
 public class Application {
