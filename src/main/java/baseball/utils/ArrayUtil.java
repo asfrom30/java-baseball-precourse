@@ -5,7 +5,10 @@ import java.util.Arrays;
 public class ArrayUtil {
 
     public static boolean every(String[] array, String target) {
-        return Arrays.stream(array).allMatch(str -> str == target);
+        for (int i = 0; i < array.length; i++) {
+            if(array[i] != target) return false;
+        }
+        return true;
     }
 
     public static int count(String[] array, String target) {
