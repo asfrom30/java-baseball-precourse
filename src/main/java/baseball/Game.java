@@ -14,11 +14,11 @@ public class Game {
         return game;
     }
 
-    Game(String answer) {
+    public Game(String answer) {
         this.answers = answer.split("");
     }
 
-    String[] infer(String input) {
+    public String[] infer(String input) {
         String[] inputs = input.split("");
 
         String[] grades = new String[3];

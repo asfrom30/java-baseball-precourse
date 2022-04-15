@@ -1,4 +1,4 @@
-package vendor;
+package units.vendor;
 
 import org.junit.jupiter.api.Test;
 
@@ -14,7 +14,5 @@ public class StringTest {
         String[] strs = str.split("");
         assertThat(strs).containsExactly("1", "2", "3");
     }
-
-
 
 }

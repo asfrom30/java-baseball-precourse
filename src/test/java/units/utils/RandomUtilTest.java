@@ -1,4 +1,4 @@
-package utils;
+package units.utils;
 
 import baseball.utils.RandomUtil;
 
