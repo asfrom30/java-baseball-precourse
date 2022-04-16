@@ -3,11 +3,16 @@ package baseball;
 import baseball.utils.ArrayUtil;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class View {
 
-    static String renderText(String[] grades) {
+    public static void render(String str) {
+        System.out.println(str);
+    }
+
+    static String renderText(Scores scores) {
+        String[] grades = scores.getValues();
+
         if(ArrayUtil.every(grades, "F")) return "낫싱";
 
         ArrayList<String> textList = new ArrayList<>();

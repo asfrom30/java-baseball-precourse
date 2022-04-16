@@ -25,8 +25,8 @@ public class Application {
                 game = Game.createNew();
             }
 
-            String[] grades = game.infer(input);
-            String text = View.renderText(grades);
+            Scores scores = game.infer(input);
+            String text = View.renderText(scores);
             System.out.println(text);
         }
 

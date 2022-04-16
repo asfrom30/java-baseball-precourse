@@ -18,18 +18,19 @@ public class Game {
         this.answers = answer.split("");
     }
 
-    public String[] infer(String input) {
+    public Scores infer(String input) {
         String[] inputs = input.split("");
 
-        String[] grades = new String[3];
+        Scores scores = new Scores();
         for (int i = 0; i < inputs.length; i++) {
             int foundIndex = Arrays.binarySearch(this.answers, inputs[i]);
-            grades[i] = this.gradeAnswer(foundIndex, i);
+            String score = this.grade(foundIndex, i);
+            scores.add(score);
         }
-        return grades;
+        return scores;
     }
 
-    private String gradeAnswer(int foundIndex, int inferIndex) {
+    private String grade(int foundIndex, int inferIndex) {
         if (foundIndex < 0) return "F";
 
         if (inferIndex == foundIndex) return "S";

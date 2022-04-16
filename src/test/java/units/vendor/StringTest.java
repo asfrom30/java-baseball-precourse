@@ -15,4 +15,10 @@ public class StringTest {
         assertThat(strs).containsExactly("1", "2", "3");
     }
 
+    @Test
+    public void stringArray() {
+        String[] grades = {"S", "S", "S"};
+        assertThat(grades[1]).isEqualTo("S");
+    }
+
 }
