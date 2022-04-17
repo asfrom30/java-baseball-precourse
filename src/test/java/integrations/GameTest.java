@@ -5,6 +5,8 @@ import baseball.mvc.domain.Score;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+
 import static org.assertj.core.api.Assertions.*;
 
 
@@ -34,4 +36,19 @@ public class GameTest {
         assertThat(score.toArray()).containsExactly(Score.Value.BALL, Score.Value.BALL, Score.Value.BALL);
     }
 
+    @Test
+    @DisplayName("정답이 742이고, 777로 추론")
+    public void inferCase2_1() {
+        Game game = new Game("742");
+        Score score = game.infer("777");
+        assertThat(score.toString()).isEqualTo("[STRIKE, BALL, BALL]");
+    }
+
+    @Test
+    @DisplayName("정답이 742이고, 742로 추론")
+    public void inferCase2_2() {
+        Game game = new Game("742");
+        Score score = game.infer("742");
+        assertThat(score.toString()).isEqualTo("[STRIKE, STRIKE, STRIKE]");
+    }
 }
