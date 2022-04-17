@@ -45,7 +45,7 @@ public class ScoreTest {
         score.add(Score.Value.STRIKE);
         score.add(Score.Value.STRIKE);
         score.add(Score.Value.STRIKE);
-        assertThat(score.getValues()).containsExactly(Score.Value.STRIKE, Score.Value.STRIKE, Score.Value.STRIKE);
+        assertThat(score.toArray()).containsExactly(Score.Value.STRIKE, Score.Value.STRIKE, Score.Value.STRIKE);
     }
 
 

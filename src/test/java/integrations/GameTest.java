@@ -15,7 +15,7 @@ public class GameTest {
     public void inferCase1() {
         Game game = new Game("135");
         Score score = game.infer("135");
-        assertThat(score.getValues()).containsExactly(Score.Value.STRIKE, Score.Value.STRIKE, Score.Value.STRIKE);
+        assertThat(score.toArray()).containsExactly(Score.Value.STRIKE, Score.Value.STRIKE, Score.Value.STRIKE);
     }
 
     @Test
@@ -23,7 +23,7 @@ public class GameTest {
     public void inferCase2() {
         Game game = new Game("135");
         Score score = game.infer("136");
-        assertThat(score.getValues()).containsExactly(Score.Value.STRIKE, Score.Value.STRIKE, Score.Value.NOTHING);
+        assertThat(score.toArray()).containsExactly(Score.Value.STRIKE, Score.Value.STRIKE, Score.Value.NOTHING);
     }
 
     @Test
@@ -31,7 +31,7 @@ public class GameTest {
     public void inferCase3() {
         Game game = new Game("135");
         Score score = game.infer("351");
-        assertThat(score.getValues()).containsExactly(Score.Value.BALL, Score.Value.BALL, Score.Value.BALL);
+        assertThat(score.toArray()).containsExactly(Score.Value.BALL, Score.Value.BALL, Score.Value.BALL);
     }
 
 }
