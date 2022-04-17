@@ -2,15 +2,23 @@ package baseball.utils;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
+import java.util.ArrayList;
+
 public class RandomUtil {
 
-    public static String makeRandom(int howManyDigit) {
-        String string = "";
+    public static ArrayList<Integer> pickNumbersWithoutDuplicate(int howManyDigit) {
+        ArrayList<Integer> numberList = new ArrayList<>();
         for (int i = 0; i < howManyDigit; i++) {
-            Integer random = Randoms.pickNumberInRange(1,9);
-            string += random;
+            int random = pickOne(numberList);
+            numberList.add(random);
         }
-        return string;
+        return numberList;
     }
 
+    public static Integer pickOne(ArrayList<Integer> excludeList) {
+        while (true) {
+            Integer candidate = Randoms.pickNumberInRange(0,9);
+            if(!excludeList.contains(candidate)) return candidate;
+        }
+    }
 }

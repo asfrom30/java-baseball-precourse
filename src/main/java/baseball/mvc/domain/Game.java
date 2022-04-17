@@ -2,13 +2,17 @@ package baseball.mvc.domain;
 
 import baseball.utils.NumberUtil;
 import baseball.utils.RandomUtil;
+import baseball.utils.StringUtil;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Game {
 
     public static Game createNew() {
-        String numbers = RandomUtil.makeRandom(3);
+        ArrayList<Integer> list = RandomUtil.pickNumbersWithoutDuplicate(3);
+        String numbers = StringUtil.from(list);
+
         Game game = new Game(numbers);
         return game;
     }
@@ -43,6 +47,4 @@ public class Game {
         if (input.length() == 3 && NumberUtil.isNumeric(input)) return;
         throw new IllegalArgumentException();
     }
-
-
 }
