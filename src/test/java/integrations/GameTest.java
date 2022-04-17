@@ -12,7 +12,7 @@ public class GameTest {
 
     @Test
     @DisplayName("정답이 135이고, 135로 추론")
-    public void newInferA() {
+    public void inferCase1() {
         Game game = new Game("135");
         Score score = game.infer("135");
         assertThat(score.getValues()).containsExactly(Score.Value.STRIKE, Score.Value.STRIKE, Score.Value.STRIKE);
@@ -20,7 +20,7 @@ public class GameTest {
 
     @Test
     @DisplayName("정답이 135이고, 136으로 추론")
-    public void newInferB() {
+    public void inferCase2() {
         Game game = new Game("135");
         Score score = game.infer("136");
         assertThat(score.getValues()).containsExactly(Score.Value.STRIKE, Score.Value.STRIKE, Score.Value.NOTHING);
@@ -28,7 +28,7 @@ public class GameTest {
 
     @Test
     @DisplayName("정답이 135이고, 351로 추론")
-    public void newInferC() {
+    public void inferCase3() {
         Game game = new Game("135");
         Score score = game.infer("351");
         assertThat(score.getValues()).containsExactly(Score.Value.BALL, Score.Value.BALL, Score.Value.BALL);

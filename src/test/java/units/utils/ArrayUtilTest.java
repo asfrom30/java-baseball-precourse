@@ -9,27 +9,41 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class ArrayUtilTest {
 
+    class Something {
+        private String value;
+        public Something(String value) {
+            this.value = value;
+        }
+
+        public boolean isEqual(String string) {
+            return this.value == string;
+        }
+    }
+
 
     @Test
-    @DisplayName("Success Case")
-    public void everyTest() {
-        Score.Value[] arr = new Score.Value[]{Score.Value.BALL, Score.Value.BALL};
-        boolean bool = ArrayUtil.every(arr, (item) -> item == Score.Value.BALL);
-        assertThat(bool).isEqualTo(true);
+    @DisplayName("every(), count(), some()")
+    public void test() {
+        Something something1 = new Something("A");
+        Something something2 = new Something("A");
+        Something[] somethings =  new Something[]{something1, something2};
 
-        int count = ArrayUtil.count(arr, (item) -> item == Score.Value.BALL);
-        assertThat(count).isEqualTo(2);
+        assertThat(ArrayUtil.every(somethings, (item) -> item.isEqual("A"))).isEqualTo(true);
+        assertThat(ArrayUtil.count(somethings, (item) -> item.isEqual("A"))).isEqualTo(2);
+        assertThat(ArrayUtil.some(somethings, (item) -> item.isEqual("A"))).isEqualTo(true);
     }
 
     @Test
-    @DisplayName("Failed Case")
-    public void everyTest2() {
-        Score.Value[] arr = new Score.Value[]{Score.Value.BALL, Score.Value.STRIKE};
-        boolean bool = ArrayUtil.every(arr, (item) -> item == Score.Value.BALL);
-        assertThat(bool).isEqualTo(false);
+    @DisplayName("every(), count(), some()")
+    public void test2() {
+        Something something1 = new Something("A");
+        Something something2 = new Something("B");
+        Something[] somethings =  new Something[]{something1, something2};
 
-        int count = ArrayUtil.count(arr, (item) -> item == Score.Value.BALL);
-        assertThat(count).isEqualTo(1);
+        assertThat(ArrayUtil.every(somethings, (item) -> item.isEqual("A"))).isEqualTo(false);
+        assertThat(ArrayUtil.count(somethings, (item) -> item.isEqual("A"))).isEqualTo(1);
+        assertThat(ArrayUtil.some(somethings, (item) -> item.isEqual("A"))).isEqualTo(true);
+        assertThat(ArrayUtil.some(somethings, (item) -> item.isEqual("C"))).isEqualTo(false);
     }
 
 }
