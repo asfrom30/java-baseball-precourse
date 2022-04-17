@@ -19,7 +19,7 @@ public class Application {
             Score score = game.infer(input);
             View.render(score);
 
-            waitUserTypeProcessCodeWhen(score.isPerfect());
+            processWhen(score.isPerfect());
         }
         View.render(View.GAME_EXIT_MESSAGE);
     }
@@ -37,11 +37,14 @@ public class Application {
         game = Game.createNew();
     }
 
-    private static void waitUserTypeProcessCodeWhen(boolean flag) {
+    private static void processWhen(boolean flag) {
         if(!flag) return;
 
         View.render(View.ASK_RESTART_OR_EXIT_MESSAGE);
+        waitUserTypeProcessCode();
+    }
 
+    private static void waitUserTypeProcessCode() {
         String input = Controller.waitUserInput();
 
         if(!ProcessCode.isValid(input)) throw new IllegalArgumentException();
