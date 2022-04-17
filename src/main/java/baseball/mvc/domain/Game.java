@@ -29,7 +29,7 @@ public class Game {
         String[] inputs = input.split("");
         Score score = new Score();
         for (int i = 0; i < inputs.length; i++) {
-            int foundIndex = Arrays.binarySearch(this.answers, inputs[i]);
+            int foundIndex = Arrays.asList(this.answers).indexOf(inputs[i]);
             Score.Value scoreValue = this.grade(foundIndex, i);
             score.add(scoreValue);
         }
