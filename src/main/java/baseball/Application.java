@@ -1,8 +1,10 @@
 package baseball;
 
-import baseball.constant.ProcessCode;
-import baseball.domain.Game;
-import baseball.domain.Score;
+import baseball.system.ProcessCode;
+import baseball.mvc.Controller;
+import baseball.mvc.View;
+import baseball.mvc.domain.Game;
+import baseball.mvc.domain.Score;
 
 
 public class Application {

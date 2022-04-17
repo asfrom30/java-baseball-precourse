@@ -1,6 +1,5 @@
 package units.utils;
 
-import baseball.domain.Score;
 import baseball.utils.ArrayUtil;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

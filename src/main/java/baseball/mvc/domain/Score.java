@@ -1,4 +1,4 @@
-package baseball.domain;
+package baseball.mvc.domain;
 
 import baseball.utils.ArrayUtil;
 

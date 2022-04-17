@@ -1,7 +1,7 @@
 package integrations;
 
-import baseball.domain.Game;
-import baseball.domain.Score;
+import baseball.mvc.domain.Game;
+import baseball.mvc.domain.Score;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

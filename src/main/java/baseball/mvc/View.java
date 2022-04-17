@@ -1,7 +1,6 @@
-package baseball;
+package baseball.mvc;
 
-import baseball.domain.Score;
-import baseball.utils.ArrayUtil;
+import baseball.mvc.domain.Score;
 
 import java.util.ArrayList;
 

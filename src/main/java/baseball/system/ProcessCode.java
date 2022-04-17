@@ -1,4 +1,4 @@
-package baseball.constant;
+package baseball.system;
 
 import baseball.utils.ArrayUtil;
 
