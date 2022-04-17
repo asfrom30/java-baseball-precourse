@@ -15,20 +15,23 @@ public class Application {
     public static void main(String[] args) {
 
         start();
-
         while (isRunning) {
-            String input = Controller.waitUserInput();
-            Score score = game.infer(input);
+            Score score = runOnce();
             View.render(score);
-
-            processWhen(score.isPerfect());
+            askStopRunningToUserWhen(score.isPerfect());
         }
-        View.render(View.GAME_EXIT_MESSAGE);
+        destroyed();
     }
 
     private static void start() {
         isRunning = true;
         game = Game.createNew();
+    }
+
+    private static Score runOnce(){
+        String input = Controller.waitUserInput();
+        Score score = game.infer(input);
+        return score;
     }
 
     private static void stop() {
@@ -39,7 +42,11 @@ public class Application {
         game = Game.createNew();
     }
 
-    private static void processWhen(boolean flag) {
+    private static void destroyed() {
+        View.render(View.GAME_EXIT_MESSAGE);
+    }
+
+    private static void askStopRunningToUserWhen(boolean flag) {
         if(!flag) return;
 
         View.render(View.ASK_RESTART_OR_EXIT_MESSAGE);
