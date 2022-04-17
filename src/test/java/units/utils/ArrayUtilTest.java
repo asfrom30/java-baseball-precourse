@@ -8,6 +8,7 @@ import baseball.utils.ArrayUtil;
 
 public class ArrayUtilTest {
 
+
     @Test
     @DisplayName("Success Case")
     public void everyTest() {

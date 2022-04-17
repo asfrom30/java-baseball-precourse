@@ -1,43 +1,52 @@
 package baseball;
 
-import camp.nextstep.edu.missionutils.Console;
-
 import baseball.constant.ProcessCode;
-import baseball.utils.NumberUtil;
+import baseball.domain.Game;
+import baseball.domain.Score;
 
 
 public class Application {
 
+    private static boolean isRunning;
+    private static Game game;
+
     public static void main(String[] args) {
 
-        Game game = Game.createNew();
+        start();
 
-        while (true) {
-            String input = Console.readLine();
+        while (isRunning) {
+            String input = Controller.waitUserInput();
+            Score score = game.infer(input);
+            View.render(score);
 
-            checkValidIfNotThrow(input);
-
-            if (ProcessCode.EXIT.equals(input)) {
-                System.out.println("게임 종료");
-                break;
-            };
-            if (ProcessCode.CONTINUE.equals(input)) {
-                game = Game.createNew();
-            }
-
-            Scores scores = game.infer(input);
-            String text = View.renderText(scores);
-            System.out.println(text);
+            waitUserTypeProcessCodeWhen(score.isPerfect());
         }
-
+        View.render(View.GAME_EXIT_MESSAGE);
     }
 
-    private static void checkValidIfNotThrow(String input) {
-        if (ProcessCode.EXIT.equals(input)) return;
-        if (ProcessCode.CONTINUE.equals(input)) return;
+    private static void start() {
+        isRunning = true;
+        game = Game.createNew();
+    }
 
-        if (input.length() == 3 && NumberUtil.isNumeric(input)) return;
+    private static void stop() {
+        isRunning = false;
+    }
 
-        throw new IllegalArgumentException();
+    private static void restart() {
+        game = Game.createNew();
+    }
+
+    private static void waitUserTypeProcessCodeWhen(boolean flag) {
+        if(!flag) return;
+
+        View.render(View.ASK_RESTART_OR_EXIT_MESSAGE);
+
+        String input = Controller.waitUserInput();
+
+        if(!ProcessCode.isValid(input)) throw new IllegalArgumentException();
+
+        if (ProcessCode.EXIT.equals(input)) Application.stop();
+        else if (ProcessCode.CONTINUE.equals(input)) Application.restart();
     }
 }
