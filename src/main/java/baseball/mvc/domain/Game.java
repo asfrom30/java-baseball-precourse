@@ -22,9 +22,7 @@ public class Game {
     public Score infer(String input) {
         this.checkValidIfNotThrow(input);
 
-        // TODO: input to score type?
         String[] inputs = input.split("");
-
         Score score = new Score();
         for (int i = 0; i < inputs.length; i++) {
             int foundIndex = Arrays.binarySearch(this.answers, inputs[i]);
