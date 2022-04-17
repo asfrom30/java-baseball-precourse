@@ -14,11 +14,11 @@ public class View {
     }
 
     public static void render(Score score) {
-        String message = View.buildMessage(score);
+        String message = View.buildScoreMessage(score);
         System.out.println(message);
     }
 
-    private static String buildMessage(Score score) {
+    private static String buildScoreMessage(Score score) {
         if(score.isPerfectNothing())  return "낫싱";
 
         ArrayList<String> textList = new ArrayList<>();
